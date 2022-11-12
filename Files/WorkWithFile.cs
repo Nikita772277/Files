@@ -46,24 +46,41 @@ namespace Files
             }
         }
         public void MultipleFilesCreat()
-        {  
-            for (int i = 0; i<1000;i++)
+        {
+            Console.WriteLine($"Сколько добавить файлов");
+            string enter = Console.ReadLine();
+            bool ent = int.TryParse(enter, out int a);
+            if (ent == true)
             {
-                string file3 = $@"C:\Users\Студент 3\Desktop\2\file{i}.txt";
-                FileInfo fileInf = new FileInfo(file3);
-                fileInf.Create();
+                for (int i = 0; i < a; i++)
+                {
+                    string file3 = $@"C:\Users\Студент 3\Desktop\2\file{i}.txt";
+                    FileInfo fileInf = new FileInfo(file3);
+                    fileInf.Create();
+                }
+                Console.WriteLine($"Создано 1000 файлов");
             }
-            Console.WriteLine($"Создана 1000 файлов");
+            else
+            {
+                Console.WriteLine($"Вы ввели не число");
+            }
         }
         public void MultipleFilesDelete()
         {
-            for (int i = 0; i < 1000; i++)
+            Console.WriteLine($"Сколько добавить файлов");
+            string enter = Console.ReadLine();
+            bool ent = int.TryParse(enter, out int a);
+            if (ent == true)
             {
-                string file3 = $@"C:\Users\Студент 3\Desktop\2\file{i}.txt";
-                FileInfo fileInf = new FileInfo(file3);
-                fileInf.Delete();
+                for (int i = 0; i < a; i++)
+                {
+                    string file3 = $@"C:\Users\Студент 3\Desktop\2\file{i}.txt";
+                    FileInfo fileInf = new FileInfo(file3);
+                    fileInf.Delete();
+                }
+                Console.WriteLine($"удалено 1000 файлов");
             }
-            Console.WriteLine($"удалено 1000 файлов");
+            else { Console.WriteLine($"Вы ввели не число"); }
         }
         public void DeleteFile()
         {
