@@ -8,7 +8,7 @@ void GetMenu()
     Console.WriteLine($"2) перемещение файла");
     Console.WriteLine($"3) создание множества файлов");
     Console.WriteLine($"4) Удаление");
-    Console.WriteLine($"5) Добовление текста");
+    Console.WriteLine($"5) Добавление текста");
     Console.WriteLine($"6) Удалить несколько файлов");
     Console.WriteLine();
 }
@@ -47,3 +47,4 @@ void Menu()
     }
 }
 Menu();
+//workwithfile.StreamWriter();

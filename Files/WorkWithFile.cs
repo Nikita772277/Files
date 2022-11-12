@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,11 @@ namespace Files
             FileInfo fileInf = new FileInfo(file);
             if (!fileInf.Exists)
             {
-                fileInf.Create();
-                Console.WriteLine($"Файл создан");
+                using (fileInf.Create())
+                {
+                    Console.WriteLine($"Файл создан");
+                }
+                
             }
             else { Console.WriteLine($"Такой файл уже существует"); }
 
@@ -32,8 +36,10 @@ namespace Files
             string wherefrom = Console.ReadLine();
             Console.WriteLine($"В какую папку переместить файла");
             string destination = Console.ReadLine();
-            string file = $@"C:\Users\Студент 3\Desktop\{wherefrom}\file.txt";
-            string file2 = $@"C:\Users\Студент 3\Desktop\{destination}\index.txt";
+            Console.WriteLine($"Введите название файла");
+            string text=Console.ReadLine();
+            string file = $@"C:\Users\Студент 3\Desktop\{wherefrom}\{text}.txt";
+            string file2 = $@"C:\Users\Студент 3\Desktop\{destination}\{text}.txt";
             FileInfo fileinf =new FileInfo(file);
             if (fileinf.Exists)
             {
@@ -58,7 +64,7 @@ namespace Files
                     FileInfo fileInf = new FileInfo(file3);
                     fileInf.Create();
                 }
-                Console.WriteLine($"Создано 1000 файлов");
+                Console.WriteLine($"Создано {a} файлов");
             }
             else
             {
@@ -78,7 +84,7 @@ namespace Files
                     FileInfo fileInf = new FileInfo(file3);
                     fileInf.Delete();
                 }
-                Console.WriteLine($"удалено 1000 файлов");
+                Console.WriteLine($"удалено {a} файлов");
             }
             else { Console.WriteLine($"Вы ввели не число"); }
         }
@@ -112,7 +118,26 @@ namespace Files
                 await fileStream.WriteAsync(buffer, 0, buffer.Length);
                 Console.WriteLine("текст записан в файл");
             }
-            using (FileStream fileStream = File.OpenRead(file)) ;
+            using (FileStream fileStream = File.OpenRead(file));
+        }
+        public async void StreamWriter()
+        {
+            Console.WriteLine($"В какой папке файл");
+            string folder = Console.ReadLine();
+            Console.WriteLine($"В какой файл записать данные");
+            string enter = Console.ReadLine();
+            string file = $@"C:\Users\Студент 3\Desktop\{folder}\{enter}.txt";
+            Console.WriteLine($"Какой текст добавить в файл");
+            string text = Console.ReadLine();
+            using(StreamWriter writer = new StreamWriter(file, true))
+            {
+                await writer.WriteLineAsync(text);
+            }
+            //using (StreamWriter writer = new StreamWriter(file, true))
+            //{
+            //    await writer.WriteLineAsync("Addition");
+            //    await writer.WriteAsync("4,5");
+            //}
         }
     }
 }
